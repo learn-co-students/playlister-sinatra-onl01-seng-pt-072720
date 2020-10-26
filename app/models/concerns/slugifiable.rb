@@ -1,4 +1,4 @@
-class Slugifiable < ActiveRecord::Base
+module Slugifiable
     module InstanceMethod
         def slug
             self.name.downcase.split.join("-")
@@ -6,17 +6,8 @@ class Slugifiable < ActiveRecord::Base
     end 
         
     module ClassMethod
-        def find_by_slug(slug)
-            # slug.split("-").collect{|x|x.capitalize}.join(" ")
-            slug_arr = []
-            
-            self.class.all.map do |instance|
-                slug_arr << instance.name.slug
-            end 
-
-            if slug_arr.include?(slug)
-                self.name 
-            end 
+        def find_by_slug(slug)       
+            self.all.find {|instance| instance.slug == slug}
         end 
     end 
 end
