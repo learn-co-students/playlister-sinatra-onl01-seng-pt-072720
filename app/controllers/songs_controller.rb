@@ -9,7 +9,7 @@ class SongsController < ApplicationController
 
     post '/songs' do 
         @song = Song.new(params[:song])
-        @artist = Artist.new(params[:artist])
+        @artist = Artist.find_or_create_by(params[:artist][:name])
 
         redirect to "/songs/#{@song.slug}"
     end 
