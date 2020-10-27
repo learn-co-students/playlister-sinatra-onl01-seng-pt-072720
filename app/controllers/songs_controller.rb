@@ -2,8 +2,7 @@ require 'rack-flash'
 
 class SongsController < ApplicationController
     configure do 
-        use Rack::Flash
-        enable :sessions
+        use Rack::Flash   
     end 
 
     get '/songs' do
@@ -17,11 +16,11 @@ class SongsController < ApplicationController
     post '/songs' do 
         @song = Song.new(params[:song])
         @song.artist = Artist.find_or_create_by(name: params[:artist][:name])
-
+        
         if !params[:genre].nil?
             @song.genre_ids << params[:genre][:id]
         end 
-
+        
         @song.save
 
         flash[:message] = "Successfully created song."
