@@ -11,6 +11,7 @@ gem 'shotgun'
 gem 'pry'
 gem 'tux'
 gem 'learn-co'
+gem 'rack-flash3'
 
 group :test do
   gem 'launchy'

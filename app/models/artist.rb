@@ -7,7 +7,10 @@ class Artist < ActiveRecord::Base
     end
 
     def self.find_by_slug(slug)
-        name = slug.gsub("-", " ").titleize
-        Artist.find_by(name: name)
+        # name = slug.gsub("-", " ").titleize
+        # Artist.find_by(name: name)
+        Artist.all.find do |artist|
+          artist.slug == slug
+        end
     end
 end
